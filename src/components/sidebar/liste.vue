@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3">
+  <div class="col-2">
     <b-list-group>
       <b-list-group-item class="d-flex justify-content-between align-items-center">
         Dev

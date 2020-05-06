@@ -1,14 +1,14 @@
 <template>
-  <div class="col-9">
+  <div class="col-10">
     <h1>Today</h1>
     <b-tabs content-class="mt-3">
-      <b-tab title="First" active>
-        <p>Me</p>
+      <b-tab title="Me" active>
+        <Feed />
       </b-tab>
-      <b-tab title="Second">
+      <b-tab title="Explore">
         <p>Explore</p>
       </b-tab>
-      <b-tab title="Disabled" disabled>
+      <b-tab title="Autre">
         <p>Autre ?</p>
       </b-tab>
     </b-tabs>
@@ -16,8 +16,19 @@
 </template>
 
 <script>
+import Feed from '../feed/Feed.vue'
 export default {
-  name: "today"
+  name: 'today',
+  components: {
+      Feed,
+  },
+  data() {
+      return {
+          feedUrl: 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446',
+          name: 'Google alert Galaxie',
+          limit: 5,
+      }
+  }
 };
 </script>
 
