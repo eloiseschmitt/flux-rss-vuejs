@@ -1,13 +1,38 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import state from './state'
-import * as getters from './getters'
-import * as mutations from './mutations'
-import * as actions from './actions'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({ state, getters, mutations, actions})
+const store = new Vuex.Store({
+    state: {
+        cat: 'Galaxie',
+        url: 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446',
+    },
+    mutations: {
+        changeCat(state, newCat) {
+            state.cat = newCat;
+            switch (newCat) {
+                case 'Galaxie':
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446';
+                    break;
+                case 'Hubble':
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500732';
+                    break;
+                case 'Jupiter':
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/15869804725181167392';
+                    break;
+                case 'Saturne':
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290499193';
+                    break;
+                case 'Univers':
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/10919938935469249528';
+                    break;
+                default:
+                    state.url = 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446';
+            }
+        }
+    }
+})
 
 export default store
