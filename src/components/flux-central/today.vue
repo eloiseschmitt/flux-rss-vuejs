@@ -3,7 +3,22 @@
     <h1>Today</h1>
     <b-tabs content-class="mt-3">
       <b-tab title="Me" active>
-        <Feed />
+        <div class="row">
+          <div class="col-4" v-for="(feed, index) in feeds" :key="index">
+            <b-card
+              :title="feed.title[0]._"
+              img-src=""
+              img-alt=""
+              style="max-width: 20rem;"
+              class="mb-2"
+              >
+              <b-card-text>
+                {{ feed.content[0]._ }}
+              </b-card-text>
+              <b-button :href="feed.link[0].$.__ob__.value.href" variant="primary">Voir l'article</b-button>
+            </b-card>
+          </div>
+        </div>
       </b-tab>
       <b-tab title="Explore">
         <p>Explore</p>
@@ -16,19 +31,26 @@
 </template>
 
 <script>
-import Feed from '../feed/Feed.vue'
 export default {
-  name: 'today',
-  components: {
-      Feed,
-  },
   data() {
-      return {
-          feedUrl: 'https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446',
-          name: 'Google alert Galaxie',
-          limit: 5,
-      }
-  }
+    return {
+      feeds: [],
+    }
+  },
+  mounted() {
+        let parseString = require('xml2js').parseString;
+        this.axios
+          .get('https://www.google.fr/alerts/feeds/02845282839133512907/6194519089290500446')
+            .then(response => {
+              let self = this;
+                parseString(response.data, function (err, result) {
+                self.feeds = result.feed.entry
+                console.log(result);
+    }); 
+            })
+            .catch(error => console.log(error)); 
+  },
+  name: 'today',
 };
 </script>
 

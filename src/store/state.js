@@ -10,6 +10,11 @@ const state = {
 }
 
 // some quotes for dashboard
-getQuotes(){
-  return [...]
+function getQuotes(){
+  return [
+    "Happiness is an attitude. We either make ourselve…e amount of work is the same. -- Carlos Castaneda",
+    "When one door of happiness closes, another opens,… one that has been opened for us. -- Helen Keller",
+  ];
 }
+
+export default state;
