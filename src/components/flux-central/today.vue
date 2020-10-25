@@ -1,19 +1,18 @@
 <template>
   <div class="col-10">
-    <h1>Feed du jour</h1>
+    <h1>Feed du jour - {{ date | formatDate }} </h1>
     <b-tabs content-class="mt-3">
       <b-tab :title="type" active>
         <div class="row">
           <div class="col-4" v-for="(feed, index) in feeds" :key="index">
             <b-card
-              :title="feed.title[0]._"
               img-src=""
               img-alt=""
               style="max-width: 20rem;"
               class="mb-2"
               >
-              <b-card-text>
-                {{ feed.content[0]._ }}
+              <b-card-title v-html="feed.title[0]._"></b-card-title>
+              <b-card-text v-html="feed.content[0]._">
               </b-card-text>
               <b-button :href="feed.link[0].$.__ob__.value.href" target="_blank" variant="primary">Voir l'article</b-button>
             </b-card>
@@ -55,6 +54,9 @@ export default {
     },
     url() {
         return this.$store.state.url
+    },
+    date() {
+      return new Date();
     }
   },
   watch: {

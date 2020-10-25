@@ -21,7 +21,7 @@ Vue.use(moment)
 // Filtre format de la date en FR
 Vue.filter('formatDate', function (value) {
   if (value) {
-      return moment(String(value)).format('DD/MM/YYYY HH:mm')
+      return moment(String(value)).format('DD/MM/YYYY')
   }
 })
 
