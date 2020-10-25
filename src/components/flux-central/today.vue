@@ -15,7 +15,7 @@
               <b-card-text>
                 {{ feed.content[0]._ }}
               </b-card-text>
-              <b-button :href="feed.link[0].$.__ob__.value.href" variant="primary">Voir l'article</b-button>
+              <b-button :href="feed.link[0].$.__ob__.value.href" target="_blank" variant="primary">Voir l'article</b-button>
             </b-card>
           </div>
         </div>
@@ -69,6 +69,7 @@ export default {
           .then(response => {
               let self = this;
                 parseString(response.data, function (err, result) {
+                  console.log(result.feed)
                 self.type = result.feed.title[0]
                 self.feeds = result.feed.entry
                 }); 
