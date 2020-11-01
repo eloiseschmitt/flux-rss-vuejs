@@ -11,10 +11,10 @@
     </b-list-group>
 
     <h3>Espace</h3>
-    <b-list-group v-for="(category, i) in getTypeAndNumbers" :key="i">
+    <b-list-group v-for="(category, i) in getCategories" :key="i">
         <b-list-group-item
         class="d-flex justify-content-between align-items-center"
-        v-on:click="changeCat('Galaxie')"
+        v-on:click="changeCat(category.urlApi)"
       >
        {{ category.name[0] }}
         <b-badge variant="primary" pill>{{ category.numberOfArticles }}</b-badge>
@@ -28,20 +28,12 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: "liste",
-  data() {
-    return {
-      categories: {
-        name: '',
-        numberOfArticles: ''
-      }
-    }
-  },
   mounted() {
     this.$store.dispatch('getArticles');
   },
   computed: {
     ...mapGetters([
-      'getTypeAndNumbers'
+      'getCategories'
     ])
   },
   methods: {
